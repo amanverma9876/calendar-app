@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { EventContext } from '../context/EventContext';
+import { useNavigate } from 'react-router-dom'; 
 
 const FormWrapper = styled.div`
   background-color: rgba(255, 255, 255, 0.8);
@@ -48,7 +49,7 @@ const EventForm = ({ existingEvent }) => {
   const [title, setTitle] = useState(existingEvent ? existingEvent.title : '');
   const [date, setDate] = useState(existingEvent ? existingEvent.date : '');
   const [category, setCategory] = useState(existingEvent ? existingEvent.category : 'Work');
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const event = {
@@ -63,6 +64,7 @@ const EventForm = ({ existingEvent }) => {
     } else {
       addEvent(event);
     }
+    navigate('/')
   };
 
   return (
